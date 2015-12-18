@@ -1,0 +1,67 @@
+group 'OSS'
+version 'v1'
+description """OSS"""
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+
+
+sourceCompatibility = 1.8// 设置 JDK 版本
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+
+//profile
+ext {
+    if (project.hasProperty('profile')) {
+        profile = project['profile']
+    } else {
+        profile = "dev"
+    }
+    println "profile:" + profile
+}
+
+
+webAppDirName = 'src/main/webapp'    // 设置 WebApp 根目录
+project.webAppDirName = 'src/main/webapp'    // 设置 WebApp 根目录
+sourceSets {
+    main {
+        java {//源码在src目录下,但排除resources和webapp
+            srcDir 'src/main'
+            exclude('resources/**')
+            exclude('webapp/**')
+        }
+        resources {
+            srcDir "src/main/resources/${profile}"
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test'
+            exclude('resources/**')
+        }
+        resources {
+            srcDir 'src/main/resources/dev'
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+
+    flatDir { dirs 'src/main/webapp/WEB-INF/lib' }
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
