@@ -1,13 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 当一个web项目不需要使用web.xml来初始配置信息时，可以不用web.xml文件来配置web项目. -->
-<!-- web.xml的加载顺序是：ServletContext->context-param->listener->filter->servlet，而同一类型之间的调用顺序是根据对应的mapping的顺序进行调用的。 -->
-<!-- schema(模式)文件,web-app入口. -->
+<!-- schema(模式)文件,web-app入口,当一个web项目不需要使用web.xml来初始配置信息时，可以不用web.xml文件来配置web项目. -->
+<!-- web.xml的加载顺序是：ServletContext->context-param->listener->filter->servlet，而同一类型之间的调用顺序是根据对应的mapping的顺序进行调用的. -->
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <!-- Web应用图标,指出IDE和GUI工具用来表示Web应用的大图标和小图标. -->
     <icon>
-        <small-icon>/themes/base/images/app_logo.jpg</small-icon>
-        <large-icon>/themes/base/images/app_logo.jpg</large-icon>
+        <!--大小为16 X 16 pixel,但是图象文件必须为GIF或JPEG格式,扩展名必须为:.gif或.jpg-->
+        <small-icon>/themes/base/images/app_logo_small.jpg</small-icon>
+        <!--大小为32 X 32 pixel,但是图象文件必须为GIF或JPEG的格式,扩展名必须为; gif或jpg-->
+        <large-icon>/themes/base/images/app_logo_large.jpg</large-icon>
     </icon>
+
+    <!-- Web应用名称,提供GUI工具可能会用来标记这个特定的Web应用的一个名称. -->
+    <display-name>notreami</display-name>
+    <!-- Web应用描述,给出于此相关的说明性文本. -->
+    <description>这是一个用于学习、记录、研究以及维护的项目</description>
+
+    <!--上下文参数-->
+    <!--声明应用范围内的初始化参数。它用于向ServletContext提供键值对，即应用程序上下文信息。我们的listener，filter等在初始化时会用到这些上下文中的信息-->
+    <!--在servlet里面可以通过getServletContext().getInitParameter("context/param")得到-->
+    <context-param id="test">
+        <description>参数的表述,必须在最上面</description>
+        <param-name>namespace</param-name>
+        <param-value>test</param-value>
+    </context-param>
+
+    <!-- 过滤器,将一个名字与一个实现javas.servlet.Filter接口的类相关联 -->
+    <filter>
+        <description>filter描述</description>
+        <display-name>filter名字</display-name>
+        <filter-name>filterTest</filter-name>
+        <filter-class>com.notreami.student1.FilterTest</filter-class>
+        <!--异步处理-->
+        <async-supported>true</async-supported>
+        <init-param>
+            <description>初始参数描述</description>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>filterTest</filter-name>
+        <url-pattern>/filterTest</url-pattern>
+        <servlet-name>simpleServlet</servlet-name>
+        <!--通过request dispatcher的forward方法传递过来或者直接从客户端传递过来的-->
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--监听器-->
+    <listener>
+        <description>listener描述</description>
+        <display-name>listener名字</display-name>
+        <listener-class>com.notreami.student1.SessionListener</listener-class>
+    </listener>
+
+    <!--控制器-->
+    <servlet>
+        <description>servlet描述</description>
+        <display-name>servlet名字</display-name>
+        <servlet-name>simpleServlet</servlet-name>
+        <servlet-class>com.notreami.student1.SimpleTest</servlet-class>
+        <init-param>
+            <description>初始参数描述</description>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+        <!--异步处理-->
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>simpleServlet</servlet-name>
+        <url-pattern>/simpleTest</url-pattern>
+    </servlet-mapping>
+
+    <!--欢迎文件页-->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <!--code与type不能同时出现-->
+        <!--<error-code>500</error-code>-->
+        <exception-type>java.lang.NullPointerException</exception-type>
+        <location>/index.jsp</location>
+    </error-page>
 </web-app>
