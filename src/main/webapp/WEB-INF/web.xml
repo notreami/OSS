@@ -25,15 +25,22 @@
     <context-param id="test">
         <description>参数的表述,必须在最上面</description>
         <param-name>namespace</param-name>
-        <param-value>test</param-value>
+        <param-value>context-param</param-value>
     </context-param>
+
+    <!--监听器-->
+    <listener>
+        <description>Listener描述</description>
+        <display-name>Listener名字</display-name>
+        <listener-class>com.notreami.student1.general.SessionListener</listener-class>
+    </listener>
 
     <!-- 过滤器,将一个名字与一个实现javas.servlet.Filter接口的类相关联 -->
     <filter>
-        <description>filter描述</description>
-        <display-name>filter名字</display-name>
-        <filter-name>filterTest</filter-name>
-        <filter-class>com.notreami.student1.FilterTest</filter-class>
+        <description>Filter描述</description>
+        <display-name>Filter名字</display-name>
+        <filter-name>FilterTest</filter-name>
+        <filter-class>com.notreami.student1.general.FilterTest</filter-class>
         <!--异步处理-->
         <async-supported>true</async-supported>
         <init-param>
@@ -43,46 +50,44 @@
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>filterTest</filter-name>
-        <url-pattern>/filterTest</url-pattern>
-        <servlet-name>simpleServlet</servlet-name>
+        <filter-name>FilterTest</filter-name>
+        <url-pattern>/servletTest</url-pattern>
+        <servlet-name>ServletTest</servlet-name>
         <!--通过request dispatcher的forward方法传递过来或者直接从客户端传递过来的-->
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
 
-    <!--监听器-->
-    <listener>
-        <description>listener描述</description>
-        <display-name>listener名字</display-name>
-        <listener-class>com.notreami.student1.SessionListener</listener-class>
-    </listener>
-
     <!--控制器-->
     <servlet>
-        <description>servlet描述</description>
-        <display-name>servlet名字</display-name>
-        <servlet-name>simpleServlet</servlet-name>
-        <servlet-class>com.notreami.student1.SimpleTest</servlet-class>
+        <description>Servlet描述</description>
+        <display-name>Servlet名字</display-name>
+        <servlet-name>ServletTest</servlet-name>
+        <servlet-class>com.notreami.student1.general.ServletTest </servlet-class>
         <init-param>
-            <description>初始参数描述</description>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
+            <param-name>username</param-name>
+            <param-value>ServletTest</param-value>
         </init-param>
-        <load-on-startup>0</load-on-startup>
+        <load-on-startup>1</load-on-startup>
         <!--异步处理-->
         <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
-        <servlet-name>simpleServlet</servlet-name>
-        <url-pattern>/simpleTest</url-pattern>
+        <servlet-name>ServletTest</servlet-name>
+        <url-pattern>/servletTest</url-pattern>
     </servlet-mapping>
+
+    <!--session配置-->
+    <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
 
     <!--欢迎文件页-->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--错误提示页-->
     <error-page>
         <!--code与type不能同时出现-->
         <!--<error-code>500</error-code>-->
