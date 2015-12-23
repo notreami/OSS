@@ -54,6 +54,7 @@
         <url-pattern>/servletTest</url-pattern>
         <servlet-name>ServletTest</servlet-name>
         <!--通过request dispatcher的forward方法传递过来或者直接从客户端传递过来的-->
+        <!--指定过滤器的转发模式，具体包括ASYNC/ERROR/FORWADR/INCLUDE/REQUEST-->
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
@@ -63,7 +64,7 @@
         <description>Servlet描述</description>
         <display-name>Servlet名字</display-name>
         <servlet-name>ServletTest</servlet-name>
-        <servlet-class>com.notreami.student1.general.ServletTest </servlet-class>
+        <servlet-class>com.notreami.student1.general.ServletTest</servlet-class>
         <init-param>
             <param-name>username</param-name>
             <param-value>ServletTest</param-value>

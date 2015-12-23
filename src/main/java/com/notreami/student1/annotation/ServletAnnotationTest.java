@@ -1,5 +1,8 @@
 package com.notreami.student1.annotation;
 
+import com.notreami.student1.AsyncListenerTest;
+
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -9,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by zhaobo04 on 15/11/30.
@@ -42,9 +45,9 @@ public class ServletAnnotationTest extends HttpServlet {
         String keyword = req.getParameter("keyword");
         System.out.println("读取的数据:" + keyword);
 
-        resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        out.append("ServletAnnotationTest");
+        out.println("结束Servlet的时间：" + new Date() + ".</br>");
+        out.flush();
     }
 
     @Override
