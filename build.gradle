@@ -43,6 +43,8 @@ sourceSets {
         java {
             srcDir 'src/test'
             exclude('resources/**')
+            exclude('fragmentA/**')
+            exclude('fragmentB/**')
         }
         resources {
             srcDir 'src/main/resources/dev'

@@ -1,4 +1,4 @@
-package web.fragment;
+package fragmentB.web.fragment;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
