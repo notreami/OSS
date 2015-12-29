@@ -1,4 +1,4 @@
-package fragmentB.web.fragment;
+package web.fragment;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;

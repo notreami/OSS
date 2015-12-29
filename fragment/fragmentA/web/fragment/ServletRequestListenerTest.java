@@ -1,4 +1,4 @@
-package fragmentA.web.fragment;
+package web.fragment;
 
 import javax.servlet.ServletRequestAttributeEvent;
 import javax.servlet.ServletRequestAttributeListener;
