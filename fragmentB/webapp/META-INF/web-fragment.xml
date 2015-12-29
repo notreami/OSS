@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment id="FragmentB" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-fragment_3_1.xsd">
+    <display-name>FragmentB</display-name>
+    <name>FragmentB</name>
+
+    <!--控制器-->
+    <servlet>
+        <description>Servlet描述</description>
+        <display-name>Servlet名字</display-name>
+        <servlet-name>fragmentServletTest</servlet-name>
+        <servlet-class>web.fragment.FragmentServletTest</servlet-class>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>ServletTest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>fragmentServletTest</servlet-name>
+        <url-pattern>/fragmentServletTest</url-pattern>
+    </servlet-mapping>
+</web-fragment>
