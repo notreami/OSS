@@ -16,10 +16,6 @@ targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
 
-
-
-webAppDirName = 'webapp'    // 设置 WebApp 根目录
-project.webAppDirName = 'webapp'    // 设置 WebApp 根目录
 sourceSets {
     main {
         java {//源码在src目录下,但排除resources和webapp
