@@ -67,7 +67,6 @@ buildNumber.properties
 ### Eclipse ###
 *.pydevproject
 .metadata
-.gradle
 bin/
 tmp/
 *.tmp
