@@ -55,7 +55,7 @@ sourceSets {
 repositories {
     mavenCentral()
 
-    flatDir { dirs 'src/main/webapp/WEB-INF/lib' }
+    flatDir { dirs 'src/main/webapp/WEB-INF/libs' }
 }
 
 
@@ -66,6 +66,11 @@ dependencies {
             'javax.servlet.jsp:jsp-api:2.2'
     runtime 'javax.servlet:jstl:1.2',
             'taglibs:standard:1.1.2'
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('src/main/webapp/WEB-INF/libs/fragmentB.jar')
+    compile files('src/main/webapp/WEB-INF/libs/fragmentA.jar')
+
 }
 
 

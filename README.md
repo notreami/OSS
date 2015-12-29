@@ -38,6 +38,8 @@ web.xml的加载顺序是：
 （3）新增注解
 
 （4）可插性(web-fragment)
+
+ 需要导出对应的jar(META-INF和java包代码)
 #### 3，Filter
 （1）普通型
 
