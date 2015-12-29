@@ -15,7 +15,7 @@
 <%="aync return=" + new java.util.Date() %>
 <!--index.html文件部分代码-->
 <form action="/upLoad" method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
+    <input type="file" name="uploadPart">
     <input type="submit" name="upload" value="上传">
 </form>
 </body>

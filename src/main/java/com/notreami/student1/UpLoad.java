@@ -37,7 +37,7 @@ public class UpLoad extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         PrintWriter out = resp.getWriter();
         //Servlet3.0中新引入的方法，用来处理multipart/form-data类型编码的表单
-        Part part = req.getPart("file");
+        Part part = req.getPart("uploadPart");
         //获取HTTP头信息headerInfo=（form-data; name="file" filename="文件名"）
         String headerInfo = part.getHeader("content-disposition");
         //从HTTP头信息中获取文件名fileName=（文件名）

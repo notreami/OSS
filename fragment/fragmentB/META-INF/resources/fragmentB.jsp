@@ -30,10 +30,12 @@
 <%=basePath%>
 这是在fragmentB.jar中的jsp文件
 <br> 这个图片文件同样来自该模块的jar
-<img alt="hp" src="<%=basePath%>images/hp.gif">
+<img alt="hp" src="<%=basePath%>themes/images/hp.gif">
 跳转到fragmentA.jar中的
 <a href="<%=basePath%>fragmentA.jsp">fragmentA.jsp</a>
 <br>
-<img alt="hp" src="<%=basePath%>images/hp.gif">
+<img alt="hp" src="<%=basePath%>themes/images/hp.gif">
+<br/>
+<jsp:include page="fragmentA.jsp"/>
 </body>
 </html>
