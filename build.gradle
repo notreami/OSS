@@ -53,12 +53,20 @@ sourceSets {
         java {
             srcDir 'fragment/fragmentA'
             exclude('META-INF')
+            exclude('resources/**')
+        }
+        resources{
+            srcDir 'fragment/fragmentA/resources'
         }
     }
     fragmentB {
         java {
             srcDir 'fragment/fragmentB'
             exclude('META-INF')
+            exclude('resources/**')
+        }
+        resources{
+            srcDir 'fragment/fragmentB/resources'
         }
     }
 }
