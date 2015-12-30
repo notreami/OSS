@@ -53,12 +53,20 @@ sourceSets {
         java {
             srcDir 'fragment/fragmentA'
             exclude('META-INF')
+            exclude('resources/**')
+        }
+        resources{
+            srcDir 'fragment/fragmentA/resources'
         }
     }
     fragmentB {
         java {
             srcDir 'fragment/fragmentB'
             exclude('META-INF')
+            exclude('resources/**')
+        }
+        resources{
+            srcDir 'fragment/fragmentB/resources'
         }
     }
 }
@@ -76,6 +84,9 @@ dependencies {
     //javax.servlet:servlet-api:2.5  javax.servlet:javax.servlet-api:3.1.0
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0',
             'javax.servlet.jsp:jsp-api:2.2'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'org.mybatis:mybatis:3.3.0'
+    compile 'org.mybatis:mybatis-spring:1.2.3'
     runtime 'javax.servlet:jstl:1.2',
             'taglibs:standard:1.1.2'
 
