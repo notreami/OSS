@@ -37,5 +37,8 @@
         <mapper resource="student3/mapping/userMapper.xml"/>
         <!--注册UserMapper映射接口-->
         <mapper class="com.notreami.student3.mapping.UserMapperI"/>
+        <!-- 注册orderMapper.xml文件，
+        orderMapper.xml位于student3.mapping这个包下，所以resource写成student3/mapping/orderMapper.xml-->
+        <mapper resource="student3/mapping/orderMapper.xml"/>
     </mappers>
 </configuration>

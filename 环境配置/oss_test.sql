@@ -11,11 +11,29 @@
  Target Server Version : 50710
  File Encoding         : utf-8
 
- Date: 12/30/2015 17:57:09 PM
+ Date: 12/31/2015 17:44:49 PM
 */
 
 SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+--  Table structure for `orders`
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_no` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `order_price` float DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `orders`
+-- ----------------------------
+BEGIN;
+INSERT INTO `orders` VALUES ('1', 'aaaa', '23'), ('2', 'bbbb', '33'), ('3', 'cccc', '22');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `users`
