@@ -21,6 +21,10 @@
         INSERT INTO users(name,age) VALUES (#{name},#{age})
     </insert>
 
+    <insert id="addUser2" parameterType="_User">
+        INSERT INTO users(name,age) VALUES (#{name},#{age})
+    </insert>
+
     <!--删除用户(Remove)-->
     <delete id="deleteUser" parameterType="int">
         DELETE FROM users WHERE id=#{id}

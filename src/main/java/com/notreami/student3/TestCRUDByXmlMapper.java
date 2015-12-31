@@ -34,6 +34,28 @@ public class TestCRUDByXmlMapper {
     }
 
     @Test
+    public void testAdd2() {
+//        SqlSession sqlSession=MyBatisUtil.getSqlSession(false);
+        SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
+        /**
+         * 映射sql的表示字符串,
+         * student3.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
+         * addUser是insert标签的id属性值，通过insert标签的id属性值就可以找到要执行的SQL
+         */
+        String statement = "student3.mapping.userMapper.addUser2";//映射sql的标识字符串
+        User user = new User();
+        user.setName("用户ooo");
+        user.setAge(30);
+        //执行插入操作
+        int retResult = sqlSession.insert(statement, user);
+        //手动提交事务
+//        sqlSession.commit();
+        //使用SqlSession执行完SQL之后需要关闭SqlSession
+        sqlSession.close();
+        System.out.println(retResult);
+    }
+
+    @Test
     public void testUpdate() {
         SqlSession sqlSession = MyBatisUtil.getSqlSession(true);
         /**

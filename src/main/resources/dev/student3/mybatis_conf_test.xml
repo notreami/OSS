@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    <!--引用db.properties配置文件-->
+    <properties resource="student3/db.properties"/>
+
+    <!--配置实体类的别名,配置实体类别名的目的是为了在引用实体类时可以使用实体类的别名来代替实体类,达到简写的目的-->
+    <typeAliases>
+        <!-- 为实体类com.notreami.student3.domain.User配置一个别名_User -->
+        <typeAlias type="com.notreami.student3.domain.User" alias="_User"/>
+        <!--为com.notreami.student3.domain包下的所有实体类配置别名,MyBatis默认的设置别名的方式就是去除类所在的包后的简单的类名-->
+        <!--比如com.notreami.student3.domain.User这个实体类的别名就会被设置成User-->
+        <package name="com.notreami.student3.domain"/>
+    </typeAliases>
+
+    <!--development:开发模式-->
+    <!--work:工作模式-->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <!--配置数据库连接信息-->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/oss_test?useUnicode=true&amp;characterEncoding=UTF-8"/>
-                <property name="username" value="root"/>
-                <property name="password" value="0226"/>
+                <!--value属性值引用db.properties配置文件中配置的值-->
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
+
 
     <mappers>
         <!-- 注册userMapper.xml文件，
