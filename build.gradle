@@ -36,7 +36,7 @@ sourceSets {
             exclude('webapp/**')
         }
         resources {
-            srcDir "src/main/resources/${profile}"
+            srcDir "src/main/resources/${profile}"//开发环境or线上环境
         }
     }
     test {
@@ -46,7 +46,7 @@ sourceSets {
         }
         resources {
             srcDir 'src/main/resources/dev'
-            srcDir 'src/test/resources'
+            srcDir 'src/test/resources'//测试使用
         }
     }
     fragmentA {
@@ -55,7 +55,7 @@ sourceSets {
             exclude('META-INF')
             exclude('resources/**')
         }
-        resources{
+        resources {
             srcDir 'fragment/fragmentA/resources'
         }
     }
@@ -65,7 +65,7 @@ sourceSets {
             exclude('META-INF')
             exclude('resources/**')
         }
-        resources{
+        resources {
             srcDir 'fragment/fragmentB/resources'
         }
     }
