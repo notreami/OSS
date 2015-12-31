@@ -13,12 +13,12 @@ import java.io.Reader;
 /**
  * Created by notreami on 15/12/30.
  */
-public class MybatisTest1 {
+public class MybatisTest {
     public static void main(String[] args) throws IOException {
         //mybatis的配置文件
-        String resource = "mybatis_conf_test.xml";
+        String resource = "student3/mybatis_conf_test.xml";
         //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
-//        InputStream is = MybatisTest1.class.getClassLoader().getResourceAsStream(resource);
+        InputStream is = MybatisTest.class.getClassLoader().getResourceAsStream(resource);
         //构建sqlSession的工厂
 //        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         //使用MyBatis提供的Resources类加载mybatis的配置文件(它也加载关联的映射文件)
