@@ -40,5 +40,11 @@
         <!-- 注册orderMapper.xml文件，
         orderMapper.xml位于student3.mapping这个包下，所以resource写成student3/mapping/orderMapper.xml-->
         <mapper resource="student3/mapping/orderMapper.xml"/>
+        <!-- 注册classMapperOnetoOne.xml文件，
+        classMapperOnetoOne.xml位于student3.mapping这个包下，所以resource写成student3/mapping/classMapperOnetoOne.xml-->
+        <mapper resource="student3/mapping/classMapperOnetoOne.xml"/>
+        <!-- 注册classMapperOnetoMore.xml文件，
+        classMapperOnetoMore.xml位于student3.mapping这个包下，所以resource写成student3/mapping/classMapperOnetoMore.xml-->
+        <mapper resource="student3/mapping/classMapperOnetoMore.xml"/>
     </mappers>
 </configuration>
