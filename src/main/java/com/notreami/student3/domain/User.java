@@ -1,14 +1,25 @@
 package com.notreami.student3.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by notreami on 15/12/30.
  * users表所对应的实体类
  */
-public class User {
+public class User implements Serializable {
     //实体类的属性和表的字段名称一一对应
     private int id;
     private String name;
     private int age;
+
+    public User() {
+    }
+
+    public User(int id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
     public int getId() {
         return id;

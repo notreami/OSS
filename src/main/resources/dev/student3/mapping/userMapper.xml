@@ -39,4 +39,15 @@
     <select id="getAllUsers" resultType="com.notreami.student3.domain.User">
         SELECT * FROM users
     </select>
+
+    <!-- 
+        查询得到男性或女性的数量, 如果传入的是0就女性否则是男性
+     -->
+    <select id="getUserCount" parameterMap="getUserCountMap" statementType="CALLABLE" >
+        call oss_test.get_user_count(?,?)
+    </select>
+    <parameterMap id="getUserCountMap" type="java.util.Map">
+        <parameter property="sexid" mode="IN" jdbcType="INTEGER"/>
+        <parameter property="usercount" mode="OUT" jdbcType="INTEGER"/>
+    </parameterMap>
 </mapper>
