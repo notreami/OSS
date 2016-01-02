@@ -11,7 +11,7 @@
  Target Server Version : 50710
  File Encoding         : utf-8
 
- Date: 01/01/2016 21:25:01 PM
+ Date: 01/02/2016 11:24:41 AM
 */
 
 SET NAMES utf8;
@@ -90,6 +90,18 @@ CREATE TABLE `student` (
 BEGIN;
 INSERT INTO `student` VALUES ('1', 'student_A', '1'), ('2', 'student_B', '1'), ('3', 'student_C', '1'), ('4', 'student_D', '2'), ('5', 'student_E', '2'), ('6', 'student_F', '2');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `t_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
+  `user_id` varchar(32) NOT NULL,
+  `user_name` varchar(30) DEFAULT NULL,
+  `user_birthday` date DEFAULT NULL,
+  `user_salary` double DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `teacher`

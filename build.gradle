@@ -36,6 +36,7 @@ sourceSets {
             exclude('webapp/**')
         }
         resources {
+            srcDir 'src/main/resources/normal'
             srcDir "src/main/resources/${profile}"//开发环境or线上环境
         }
     }
@@ -45,7 +46,7 @@ sourceSets {
             exclude('resources/**')
         }
         resources {
-            srcDir 'src/main/resources/dev'
+            srcDir 'src/main/resources/normal'
             srcDir 'src/test/resources'//测试使用
         }
     }

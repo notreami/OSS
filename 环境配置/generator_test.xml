@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动包位置-->
+    <classPathEntry
+            location="/Users/notreami/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.38/dbbd7cd309ce167ec8367de4e41c63c2c8593cc5/mysql-connector-java-5.1.38.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接的URL,用户名,密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/oss_test?useUnicode=true&amp;characterEncoding=UTF-8"
+                        userId="root" password="0226"/>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成实体类的包名和位置，这里配置将生成的实体类放在com.notreami.student3.generatordomain这个包下 -->
+        <javaModelGenerator targetPackage="com.notreami.student3.generatordomain"
+                            targetProject="/Users/notreami/Documents/workspace/IdeaProjects/OSS/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- 生成的SQL映射文件包名和位置，这里配置将生成的SQL映射文件放在com.notreami.student3.generatormapping这个包下 -->
+        <!--UserMapper.xml的<mapper>标签的namespace必须是UserMapper接口的全类名，既<mapper namespace="com.notreami.student3.generatordao.UserMapper" >-->
+        <!--UserMapper.xml的定义操作数据库的<select><delete><update><insert>这些标签的id属性的值必须和UserMapper接口定义的方法名一致-->
+        <sqlMapGenerator targetPackage="student3.generatormapping"
+                         targetProject="/Users/notreami/Documents/workspace/IdeaProjects/OSS/src/main/resources/normal">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置，这里配置将生成的dao类放在com.notreami.student3.generatordao这个包下 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.notreami.student3.generatordao"
+                             targetProject="/Users/notreami/Documents/workspace/IdeaProjects/OSS/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table tableName="t_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>
