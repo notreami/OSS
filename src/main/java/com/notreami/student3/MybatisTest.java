@@ -1,19 +1,38 @@
 package com.notreami.student3;
 
+import com.notreami.student3.dao.UserDao;
 import com.notreami.student3.domain.User;
+import com.notreami.student3.mapping.UserDaoImpl;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.List;
 
 /**
  * Created by notreami on 15/12/30.
  */
 public class MybatisTest {
+
+    /**
+     * 不使用 XML 构建 SqlSessionFactory
+     * DataSource dataSource = BlogDataSourceFactory.getBlogDataSource();
+     * TransactionFactory transactionFactory = new JdbcTransactionFactory();
+     * Environment environment = new Environment("development", transactionFactory, dataSource);
+     * Configuration configuration = new Configuration(environment);
+     * configuration.addMapper(BlogMapper.class);
+     * SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+     *
+     * @param args
+     * @throws IOException
+     */
+
+
     public static void main(String[] args) throws IOException {
         //mybatis的配置文件
         String resource = "student3/mybatis_conf_test.xml";
@@ -22,9 +41,9 @@ public class MybatisTest {
         //构建sqlSession的工厂
 //        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         //使用MyBatis提供的Resources类加载mybatis的配置文件(它也加载关联的映射文件)
-        Reader reader= Resources.getResourceAsReader(resource);
+        Reader reader = Resources.getResourceAsReader(resource);
         //构建sqlSession的工厂
-        SqlSessionFactory sessionFactory=new SqlSessionFactoryBuilder().build(reader);
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
         //创建能执行映射文件中sql的sqlsession
         SqlSession session = sessionFactory.openSession();
@@ -37,5 +56,23 @@ public class MybatisTest {
         //执行查询返回一个唯一的user对象的sql
         User user = session.selectOne(statement, 2);
         System.out.println(user);
+    }
+
+    /**
+     * 接口实现
+     */
+    @Test
+    public void testImpl() {
+        String resource = "student3/mybatis_conf_test.xml";
+        //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
+        InputStream is = MybatisTest.class.getClassLoader().getResourceAsStream(resource);
+        //构建sqlSession的工厂
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+
+        UserDao userDao = new UserDaoImpl(sessionFactory);
+        List<User> userList = userDao.selectAllUser();
+        for (User u : userList) {
+            System.out.println("** "+u.getId() + "\t\t" + u.getName() + "\t\t" + u.getAge());
+        }
     }
 }
