@@ -69,7 +69,13 @@ public class MybatisTest {
         //构建sqlSession的工厂
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-        UserDao userDao = new UserDaoImpl(sessionFactory);
+        //使用接口类的调用方式
+        //接口类中的方法与SQL映射文件中 同名ID的SQL语句构成一个映射关系，当调用接口方法时，自动去执行相应的SQL语句，SQL语句执行结果以接口返回类型返回
+        SqlSession session = sessionFactory.openSession();
+        UserDao userDao = session.getMapper(UserDao.class);
+        //使用接口实现类的调用方式
+        //在实现类中，我们已经在方法实现里映射的SQL语句，所以不再需要调用SqlSession.getMapper()进行映射
+//        UserDao userDao = new UserDaoImpl(sessionFactory);
         List<User> userList = userDao.selectAllUser();
         for (User u : userList) {
             System.out.println("** "+u.getId() + "\t\t" + u.getName() + "\t\t" + u.getAge());
