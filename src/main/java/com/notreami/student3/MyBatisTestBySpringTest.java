@@ -24,7 +24,7 @@ public class MyBatisTestBySpringTest {
     @Before
     public void before() {
         //使用"spring-core-config.xml"和"spring-mybatis.xml"这两个配置文件创建Spring上下文
-        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"student3/spring-core-config.xml", "student3/spring-mybatis.xml"});
+        ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"spring-core-config.xml", "spring-mybatis.xml"});
         //从Spring容器中根据bean的id取出我们要使用的userService对象 @Service("userService")
         userService = (UserServiceI) ac.getBean("userService");
     }

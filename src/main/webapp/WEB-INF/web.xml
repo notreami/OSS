@@ -32,7 +32,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <!-- 配置spring.xml和spring-mybatis.xml这两个配置文件的位置，固定写法 -->
-        <param-value>classpath:student3/spring-core-config.xml,classpath:student3/spring-mybatis.xml</param-value>
+        <param-value>classpath:spring-core-config.xml,classpath:spring-mybatis.xml</param-value>
     </context-param>
 
     <!--监听器-->

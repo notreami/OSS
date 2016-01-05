@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 //配置了@ContextConfiguration注解并使用该注解的locations属性指明spring和配置文件之后
-@ContextConfiguration(locations = {"classpath:student3/spring-core-config.xml","classpath:student3/spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-core-config.xml","classpath:spring-mybatis.xml"})
 public class MyBatisTestBySpringTestFramework {
 
     @Autowired
