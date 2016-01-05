@@ -58,8 +58,13 @@
         value="classpath:student3/generatormapping/*.xml"指的是classpath(类路径)下student3.generatormapping包中的所有xml文件
         UserMapper.xml位于student3.generatormapping，这样UserMapper.xml就可以被自动扫描
          -->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="mapperLocations"
                   value="classpath:student3/generatormapping/*.xml"/>
+    </bean>
+    <!--配置SqlSessionTemplate-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
     <!-- 配置扫描器 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
