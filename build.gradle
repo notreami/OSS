@@ -155,11 +155,3 @@ dependencies {
 }
 
 
-//jetty启动配置
-apply plugin: 'jettyEclipse'
-jettyEclipse {
-    httpPort = 8080
-    contextPath = ""
-    reload = "automatic"
-    scanIntervalSeconds = 1
-}
