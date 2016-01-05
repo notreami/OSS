@@ -102,26 +102,26 @@ public class MyBatisTestBySpringTestFramework {
     @Test
     public void testISelect() {
         //jdk6,7用法，创建接口
-        Page<User> page = PageHelper.startPage(1, 10).setOrderBy("id desc").doSelectPage(new ISelect() {
+        Page<User> page = PageHelper.startPage(1, 10).setOrderBy("user_id desc").doSelectPage(new ISelect() {
             @Override
             public void doSelect() {
                 userService.getAllUser();
             }
         });
         //jdk8 lambda用法
-        page = PageHelper.startPage(1, 10).setOrderBy("id desc").doSelectPage(() -> userService.getAllUser());
-        //为了说明可以链式使用，上面是单独setOrderBy("id desc")，也可以直接如下
-        page = PageHelper.startPage(1, 10, "id desc").doSelectPage(() -> userService.getAllUser());
+        page = PageHelper.startPage(1, 10).setOrderBy("user_id desc").doSelectPage(() -> userService.getAllUser());
+        //为了说明可以链式使用，上面是单独setOrderBy("user_id desc")，也可以直接如下
+        page = PageHelper.startPage(1, 10, "user_id desc").doSelectPage(() -> userService.getAllUser());
 
         //也可以直接返回PageInfo，注意doSelectPageInfo方法和doSelectPage
-        PageInfo pageInfo = PageHelper.startPage(1, 10).setOrderBy("id desc").doSelectPageInfo(new ISelect() {
+        PageInfo pageInfo = PageHelper.startPage(1, 10).setOrderBy("user_id desc").doSelectPageInfo(new ISelect() {
             @Override
             public void doSelect() {
                 userService.getAllUser();
             }
         });
         //对应的lambda用法
-        pageInfo = PageHelper.startPage(1, 10).setOrderBy("id desc").doSelectPageInfo(() -> userService.getAllUser());
+        pageInfo = PageHelper.startPage(1, 10).setOrderBy("user_id desc").doSelectPageInfo(() -> userService.getAllUser());
 
         //count查询，返回一个查询语句的count数
 //        long total = PageHelper.count(new ISelect() {
