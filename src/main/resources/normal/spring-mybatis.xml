@@ -49,6 +49,11 @@
         <property name="filters" value="mergeStat"/>
     </bean>
 
+    <!-- 创建JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
     <!-- ========================================针对myBatis的配置项============================== -->
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
