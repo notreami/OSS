@@ -139,6 +139,8 @@
         <!-- 注册classMapperOnetoMore.xml文件，
         classMapperOnetoMore.xml位于student3.mapping这个包下，所以resource写成student3/mapping/classMapperOnetoMore.xml-->
         <mapper resource="student3/mapping/classMapperOnetoMore.xml"/>
+
+        <mapper resource="student3/mapping/FDMapper.xml"/>
         <!--基于接口-->
         <mapper resource="student3/mapping/userImplMapper.xml"/>
     </mappers>

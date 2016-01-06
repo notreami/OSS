@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.notreami.student3.dao.FdDao">
+    <!--注意参数不能为null,在跳用接口前封装了一层判断数据-->
+    <select id="getFdByStartDateToEndDate" resultMap="FdMap">
+        SELECT * FROM fddatas
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="startDate != null">
+                AND start_date &gt;= #{startDate}
+            </if>
+            <if test="endDate != null">
+                AND end_date &lt;= #{endDate}
+            </if>
+        </trim>
+    </select>
+
+    <!--注意参数不能为null,在跳用接口前封装了一层判断数据-->
+    <update id="updateNFDFromSourceToSource">
+        UPDATE fddatas SET source=#{toSource}
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="fromSource != null">
+                AND source = #{fromSource}
+            </if>
+            <if test="createtime != null">
+                AND createtime &gt;= #{createtime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </trim>
+    </update>
+
+    <!--注意参数不能为null,在跳用接口前封装了一层判断数据,这里是物理删除-->
+    <delete id="deleteByEndDate">
+        DELETE FROM fddatas
+        <trim prefix="where" prefixOverrides="AND |OR ">
+            <if test="end_date != null">
+                AND end_date &gt;= #{end_date}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+            <if test="source != null">
+                AND source = #{source}
+            </if>
+
+            <if test="org != null">
+                AND org = #{org}
+            </if>
+            <if test="dst != null">
+                AND dst = #{dst}
+            </if>
+            <if test="carrier != null">
+                AND carrier = #{carrier}
+            </if>
+            <if test="cabin != null">
+                AND cabin = #{cabin}
+            </if>
+        </trim>
+    </delete>
+
+    <resultMap id="FdMap" type="com.notreami.student3.domain.Fd" autoMapping="true">
+    </resultMap>
+
+</mapper>

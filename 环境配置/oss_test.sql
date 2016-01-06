@@ -11,7 +11,7 @@
  Target Server Version : 50710
  File Encoding         : utf-8
 
- Date: 01/02/2016 11:24:41 AM
+ Date: 01/06/2016 22:23:42 PM
 */
 
 CREATE DATABASE `oss_test` DEFAULT CHARACTER SET utf8;
@@ -37,6 +37,55 @@ CREATE TABLE `class` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `class` VALUES ('1', 'class_a', '1'), ('2', 'class_b', '2');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `fddatas`
+-- ----------------------------
+DROP TABLE IF EXISTS `fddatas`;
+CREATE TABLE `fddatas` (
+  `id` decimal(18,0) NOT NULL,
+  `fdid` int(11) NOT NULL AUTO_INCREMENT,
+  `version` int(11) NOT NULL DEFAULT '1',
+  `createtime` datetime NOT NULL,
+  `updatetime` datetime NOT NULL,
+  `operator` varchar(64) NOT NULL DEFAULT '',
+  `operator_mail` varchar(64) NOT NULL DEFAULT '',
+  `org` char(3) NOT NULL DEFAULT '' COMMENT 'airport_from，出发',
+  `dst` char(3) NOT NULL DEFAULT '' COMMENT 'airport_to，到达',
+  `carrier` char(5) NOT NULL DEFAULT '' COMMENT '航空公司',
+  `cabin` char(5) NOT NULL DEFAULT '' COMMENT '舱位',
+  `cabin_type` char(1) NOT NULL DEFAULT '' COMMENT '舱位类型',
+  `airline_type` char(2) NOT NULL DEFAULT '' COMMENT 'ow : 单程, rt : 往返',
+  `distance` float NOT NULL DEFAULT '0' COMMENT '航程',
+  `fuel_tax` float NOT NULL DEFAULT '0' COMMENT '燃油税',
+  `price` float NOT NULL DEFAULT '0' COMMENT '运价',
+  `discount` float NOT NULL DEFAULT '0' COMMENT '折扣',
+  `currency` char(5) NOT NULL DEFAULT 'CNY' COMMENT '货币，人民币为CNY',
+  `start_date` date NOT NULL COMMENT '运价数据的生效时间',
+  `end_date` date NOT NULL COMMENT '运价数据的失效时间',
+  `start_date2` bigint(20) DEFAULT '0' COMMENT '运价数据的生效时间，毫秒为单位',
+  `end_date2` bigint(20) DEFAULT '0' COMMENT '运价数据的失效时间，毫秒微单位',
+  `source` char(3) NOT NULL DEFAULT 'FD' COMMENT 'STA、MAN、FD、OLD（就是FD-OLD）、NFD、NFD-OLD',
+  `verify_time` datetime NOT NULL COMMENT '有效时间',
+  `remark` text NOT NULL COMMENT '注意事项',
+  `status` tinyint(1) NOT NULL DEFAULT '2' COMMENT '状态：0，删除；1，有效；2，待审；3:实效；',
+  `opid` char(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`fdid`),
+  KEY `idx_search` (`org`,`dst`,`carrier`),
+  KEY `status_search` (`status`),
+  KEY `verify_search` (`verify_time`),
+  KEY `source_status_search` (`source`,`status`),
+  KEY `idx_id` (`id`),
+  KEY `idx_carrier` (`carrier`),
+  KEY `idx_query` (`airline_type`,`status`,`fdid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `fddatas`
+-- ----------------------------
+BEGIN;
+INSERT INTO `fddatas` VALUES ('1', '1', '1', '2016-01-06 13:41:12', '2016-01-06 13:41:14', '1', '1', '1', '1', '1', '1', '1', '1', '11', '1', '1', '1', '1', '2016-01-06', '2016-01-06', '1', '1', '1', '2016-01-06 13:41:46', '1', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -104,6 +153,13 @@ CREATE TABLE `t_user` (
   `user_salary` double DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `t_user`
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_user` VALUES ('4eb7f208f30e48fe8324f6b021522116', '白虎神皇xdp', '2016-01-05', '10000'), ('730979cd517e41eeb0f59a13fab8c198', '白虎神皇xdp', '2016-01-02', '10000'), ('9d4f33fa7ff34b8688d4205daf6602a2', '白虎神皇xdp', '2016-01-02', '10000'), ('fb1c5941094e400b975f10d9a9d602a3', 'xdp_gacl_白虎神皇', '2016-01-02', '10000'), ('fb1c5941094e400b975f10d9a9d602a4', 'xdp_gacl_白虎神皇', '2016-01-05', '10000');
+COMMIT;
 
 -- ----------------------------
 --  Table structure for `teacher`
